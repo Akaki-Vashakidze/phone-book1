@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { users } from '../Data';
 import { IUserLogin } from '../Interfaces/IUserLogin';
 import { User } from '../models/user';
-import { USER_LOGIN } from '../shared/constants/urls';
+import { USER_LOGIN_URL } from '../shared/constants/urls';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +21,14 @@ export class UserService {
   }
 
 login(userLogin:IUserLogin):Observable<User>{
-return this.http.post<User>(USER_LOGIN,userLogin).pipe(
+return this.http.post<User>(USER_LOGIN_URL,userLogin).pipe(
   tap({
     next:(user) => {
       this.userSubjet.next(user)
+      console.log('User Is In')
     },
     error: (errorResponse) => {
-
+     console.log('Incorrect Username or password')
     }
   })
 )

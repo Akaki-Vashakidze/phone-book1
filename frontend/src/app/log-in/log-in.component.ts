@@ -17,7 +17,7 @@ returnUrl = '';
  LogIn = (Username1: any,Password1: any) => {
   this.userService.login({
     userName: Username1.value,
-    password: Password1
+    password: Password1.value
   })
 
  }
